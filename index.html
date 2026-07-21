@@ -3103,6 +3103,35 @@
       </svg>
     </div>
     <!-- Start of bodyEnd -->
+    <script>
+      // "Plan a Safari" nav item. The nav is React-hydrated, so a static HTML
+      // edit gets clobbered on load (see commit 8059af4); instead we clone the
+      // FAQ item after hydration and re-add it if a re-render drops it.
+      (function () {
+        function ensure() {
+          document.querySelectorAll('a[href="./#faq"]').forEach(function (faq) {
+            var wrap = faq.parentElement;
+            if (!wrap || !wrap.parentElement) return;
+            if (wrap.parentElement.querySelector("[data-lh-planner]")) return;
+            var clone = wrap.cloneNode(true);
+            clone.setAttribute("data-lh-planner", "1");
+            var a = clone.querySelector("a");
+            if (!a) return;
+            a.setAttribute("href", "./plan-your-safari/");
+            a.removeAttribute("data-framer-page-link-current");
+            clone.querySelectorAll("p").forEach(function (p) {
+              p.textContent = "Plan a Safari";
+            });
+            wrap.parentElement.insertBefore(clone, wrap.nextSibling);
+          });
+        }
+        ensure();
+        new MutationObserver(ensure).observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      })();
+    </script>
     <!-- End of bodyEnd -->
   </body>
 </html>

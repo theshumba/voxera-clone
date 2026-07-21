@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plan your safari · LodgeHelm</title>
+  <meta name="description" content="Tell us about the trip you want. We introduce you to the right lodge from our network, and the lodge arranges everything with you directly." />
+  <link rel="icon" href="../assets/images/pnPg5xttIAbkjNgKIe3jCEnMGE8.png" />
+  <meta property="og:title" content="Plan your safari · LodgeHelm" />
+  <meta property="og:description" content="Tell us about the trip you want. We match you with the right lodge." />
+  <meta property="og:image" content="https://lodgehelm.com/assets/images/lodgehelm-og-image.png" />
+  <style>
+    @font-face {
+      font-family: "Space Grotesk";
+      src: url("../assets/fonts/OB3CIWMGQGGYEGXRXPOVBXWAH4INE6T4.woff2") format("woff2");
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Space Grotesk";
+      src: url("../assets/fonts/V2SN6OQGC3Z2CCFHLOEJRJKQXUTOKEBX.woff2") format("woff2");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Switzer";
+      src: url("../assets/fonts/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Switzer";
+      src: url("../assets/fonts/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff2") format("woff2");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      --orange: rgb(251, 103, 4);
+      --orange-press: rgb(226, 92, 2);
+      --dark: rgb(18, 18, 18);
+      --page: rgb(10, 10, 10);
+      --panel: rgb(22, 22, 22);
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.18);
+      --text: rgb(255, 255, 255);
+      --muted: rgba(255, 255, 255, 0.64);
+      --muted-2: rgba(255, 255, 255, 0.42);
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --r-pill: 100px;
+      --r-card: 20px;
+      --r-input: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--page);
+      color: var(--text);
+      font-family: "Switzer", "Inter", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    ::selection { background: rgba(251, 103, 4, 0.35); }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    .top {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(10, 10, 10, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .top-inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
+    .brand span {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600; font-size: 18px; letter-spacing: -0.02em;
+    }
+    .back {
+      font-size: 14px; color: var(--muted);
+      padding: 8px 16px; border: 1px solid var(--line); border-radius: var(--r-pill);
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .back:hover { color: var(--text); border-color: var(--line-strong); }
+    }
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    main { flex: 1; }
+    .wrap {
+      max-width: 1120px; margin: 0 auto;
+      padding: 56px 20px 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .wrap { grid-template-columns: 1fr; padding-top: 40px; gap: 40px; }
+    }
+
+    /* ── Left column ────────────────────────────────────────── */
+    .kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--orange);
+      border: 1px solid rgba(251, 103, 4, 0.35);
+      border-radius: var(--r-pill); padding: 6px 14px;
+      margin-bottom: 22px;
+    }
+    .kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600; font-size: 52px; line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    @media (max-width: 900px) { h1 { font-size: 38px; } }
+    .lede { color: var(--muted); font-size: 17px; max-width: 44ch; margin-bottom: 40px; }
+
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px 0;
+    }
+    .step + .step { border-top: 1px solid var(--line); }
+    .step-n {
+      font-family: "Space Grotesk", sans-serif; font-weight: 600;
+      font-size: 14px; color: var(--orange);
+      width: 34px; height: 34px; flex: none;
+      border: 1px solid rgba(251, 103, 4, 0.35); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .step h3 { font-family: "Space Grotesk", sans-serif; font-weight: 500; font-size: 17px; letter-spacing: -0.01em; }
+    .step p { color: var(--muted); font-size: 15px; margin-top: 2px; }
+
+    .assure {
+      margin-top: 36px; padding: 16px 18px;
+      border: 1px solid var(--line); border-radius: var(--r-card);
+      color: var(--muted); font-size: 14px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .assure strong { color: var(--text); font-weight: 500; }
+
+    /* ── Form card ──────────────────────────────────────────── */
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      padding: 30px;
+    }
+    @media (max-width: 900px) { .card { padding: 22px; } }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+
+    .field { margin-bottom: 16px; }
+    label {
+      display: block; font-size: 13.5px; font-weight: 500;
+      color: var(--muted); margin-bottom: 7px;
+    }
+    label .opt { color: var(--muted-2); font-weight: 400; }
+    input, textarea {
+      width: 100%;
+      background: rgb(14, 14, 14);
+      border: 1px solid var(--line);
+      border-radius: var(--r-input);
+      color: var(--text);
+      font: inherit; font-size: 15px;
+      padding: 11px 14px;
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+    input::placeholder, textarea::placeholder { color: var(--muted-2); }
+    input:focus-visible, textarea:focus-visible {
+      outline: none;
+      border-color: var(--orange);
+      background: rgb(16, 16, 16);
+    }
+    input[type="date"] { color-scheme: dark; min-height: 45px; }
+    textarea { resize: vertical; min-height: 110px; }
+
+    /* Honeypot: off-screen for humans, present for bots */
+    .hp {
+      position: absolute !important; width: 1px; height: 1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+    }
+
+    .submit {
+      width: 100%;
+      margin-top: 6px;
+      background: var(--orange);
+      color: #fff;
+      border: none; cursor: pointer;
+      font: inherit; font-size: 16px; font-weight: 500;
+      padding: 14px 24px;
+      border-radius: var(--r-pill);
+      transition: transform 160ms var(--ease-out), background-color 150ms ease, opacity 150ms ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .submit:hover { background: var(--orange-press); }
+    }
+    .submit:active { transform: scale(0.97); }
+    .submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+    .fineprint { margin-top: 14px; font-size: 13px; color: var(--muted-2); text-align: center; }
+
+    .error {
+      display: none;
+      margin-top: 14px; padding: 12px 14px;
+      border: 1px solid rgba(255, 106, 106, 0.4);
+      border-radius: var(--r-input);
+      background: rgba(255, 106, 106, 0.08);
+      color: rgb(255, 168, 168); font-size: 14px;
+    }
+    .error a { color: var(--text); text-decoration: underline; }
+    .error.show { display: block; }
+
+    /* Success panel */
+    .done { display: none; text-align: center; padding: 34px 10px; }
+    .done.show { display: block; }
+    .done .tick {
+      width: 56px; height: 56px; margin: 0 auto 18px;
+      border-radius: 50%;
+      background: rgba(251, 103, 4, 0.14);
+      border: 1px solid rgba(251, 103, 4, 0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .done .tick svg { width: 26px; height: 26px; stroke: var(--orange); }
+    .done h2 {
+      font-family: "Space Grotesk", sans-serif; font-weight: 600;
+      font-size: 26px; letter-spacing: -0.02em; margin-bottom: 10px;
+    }
+    .done p { color: var(--muted); font-size: 15px; max-width: 38ch; margin: 0 auto; }
+    .done .home {
+      display: inline-block; margin-top: 24px;
+      padding: 11px 22px; border-radius: var(--r-pill);
+      border: 1px solid var(--line-strong); font-size: 14.5px;
+      transition: border-color 150ms ease, transform 160ms var(--ease-out);
+    }
+    .done .home:active { transform: scale(0.97); }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px 20px;
+      text-align: center;
+      color: var(--muted-2); font-size: 13.5px;
+    }
+
+    /* ── Entrance (one-time, subtle) ────────────────────────── */
+    .rise {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out);
+      @starting-style { opacity: 0; transform: translateY(10px); }
+    }
+    .rise-2 { transition-delay: 60ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .rise, .rise-2 { transition: opacity 200ms ease; transform: none; }
+      .submit, .done .home { transition: background-color 150ms ease, opacity 150ms ease; }
+      .submit:active, .done .home:active { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="top-inner">
+      <a class="brand" href="../">
+        <img src="../assets/images/pnPg5xttIAbkjNgKIe3jCEnMGE8.png" alt="" width="30" height="30" />
+        <span>LodgeHelm</span>
+      </a>
+      <a class="back" href="../">Back to home</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="wrap">
+      <section class="rise">
+        <span class="kicker"><span class="dot"></span>Safari planning, made personal</span>
+        <h1>Plan your safari</h1>
+        <p class="lede">
+          Tell us about the trip you want. We introduce you to the right lodge
+          from our network, and the lodge arranges everything with you directly:
+          your dates, your rooms, your game drives.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <span class="step-n">1</span>
+            <div>
+              <h3>Tell us your dream trip</h3>
+              <p>Dates, party, and what matters most to you. Two minutes, no account needed.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-n">2</span>
+            <div>
+              <h3>We match you with the right lodge</h3>
+              <p>We work with owner-run camps and lodges across Africa and hand-pick the fit for your trip.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-n">3</span>
+            <div>
+              <h3>The lodge takes it from there</h3>
+              <p>You deal with the lodge directly for the itinerary, the quote and the booking. No middlemen.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="assure">
+          <strong>You pay the lodge, not us.</strong>
+          Our introductions cost you nothing and your quote comes straight from the lodge.
+        </p>
+      </section>
+
+      <section class="card rise rise-2" aria-label="Safari enquiry form">
+        <form id="planner" novalidate>
+          <div class="grid2">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="120" placeholder="Jane Walker" />
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="200" placeholder="jane@example.com" />
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="field">
+              <label for="f-phone">Phone <span class="opt">(optional)</span></label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="+44 7700 000000" />
+            </div>
+            <div class="field">
+              <label for="f-country">Country you live in <span class="opt">(optional)</span></label>
+              <input id="f-country" name="country" type="text" autocomplete="country-name" maxlength="80" placeholder="United Kingdom" />
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="field">
+              <label for="f-start">First night <span class="opt">(rough is fine)</span></label>
+              <input id="f-start" name="travel_start" type="date" />
+            </div>
+            <div class="field">
+              <label for="f-end">Last night</label>
+              <input id="f-end" name="travel_end" type="date" />
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="field">
+              <label for="f-adults">Adults</label>
+              <input id="f-adults" name="adults" type="number" min="1" max="40" inputmode="numeric" placeholder="2" />
+            </div>
+            <div class="field">
+              <label for="f-children">Children</label>
+              <input id="f-children" name="children" type="number" min="0" max="40" inputmode="numeric" placeholder="0" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-message">Tell us about the trip</label>
+            <textarea id="f-message" name="message" maxlength="4000" placeholder="First safari or fifth? Big cats, birding, walking, photography? Style of lodge you love? The more you share, the better the match."></textarea>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button class="submit" type="submit" id="send">Send my trip brief</button>
+          <p class="fineprint">We reply within 24 hours. No account, no spam, no obligation.</p>
+          <div class="error" id="err" role="alert">
+            Something went wrong sending your brief. Please try again in a minute,
+            or <a href="https://calendly.com/ndoromelusi/30min" target="_blank" rel="noopener">book a quick call</a> instead.
+          </div>
+        </form>
+
+        <div class="done" id="done" aria-live="polite">
+          <div class="tick">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h2>Your trip brief is in</h2>
+          <p id="done-copy">
+            Thank you. We are reading it now and will come back within 24 hours
+            with the lodge we think fits your trip best.
+          </p>
+          <a class="home" href="../">Back to lodgehelm.com</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>LodgeHelm · Safari lodges, run beautifully · <a href="../">lodgehelm.com</a></footer>
+
+  <script>
+    (function () {
+      var API = "https://app.lodgehelm.com/api/public/planner";
+      var form = document.getElementById("planner");
+      var send = document.getElementById("send");
+      var err = document.getElementById("err");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        err.classList.remove("show");
+
+        if (!form.reportValidity()) return;
+
+        var val = function (id) {
+          var v = document.getElementById(id).value.trim();
+          return v || undefined;
+        };
+        var num = function (id) {
+          var v = document.getElementById(id).value;
+          return v === "" ? undefined : parseInt(v, 10);
+        };
+
+        var payload = {
+          name: val("f-name"),
+          email: val("f-email"),
+          phone: val("f-phone"),
+          country: val("f-country"),
+          travel_start: val("f-start"),
+          travel_end: val("f-end"),
+          adults: num("f-adults"),
+          children: num("f-children"),
+          message: val("f-message"),
+          website: val("f-website"),
+        };
+        Object.keys(payload).forEach(function (k) {
+          if (payload[k] === undefined) delete payload[k];
+        });
+
+        send.disabled = true;
+        send.textContent = "Sending…";
+
+        fetch(API, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then(function (r) {
+            if (!r.ok) throw new Error("bad status " + r.status);
+            return r.json();
+          })
+          .then(function () {
+            var first = (payload.name || "").split(" ")[0];
+            if (first) {
+              document.getElementById("done-copy").textContent =
+                "Thank you, " + first + ". We are reading your brief now and will " +
+                "come back within 24 hours with the lodge we think fits your trip best.";
+            }
+            form.style.display = "none";
+            document.getElementById("done").classList.add("show");
+          })
+          .catch(function () {
+            err.classList.add("show");
+            send.disabled = false;
+            send.textContent = "Send my trip brief";
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
