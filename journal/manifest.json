@@ -1,0 +1,40 @@
+{
+  "brand": "lodgehelm",
+  "files": [
+    {
+      "path": "assets/safari-enquiry-handover-checklist-share.png",
+      "sha256": "a96d54950fe950280131e11395021bb6a58f177ae631a1907673f4bca4fb1dfc",
+      "bytes": 54248
+    },
+    {
+      "path": "assets/safari-enquiry-handover-checklist-share.svg",
+      "sha256": "4b2e3270ea71d04f4b90535da5b86d260562193baaea4d67e207e6f5b866a85c",
+      "bytes": 740
+    },
+    {
+      "path": "catalogue.json",
+      "sha256": "8e5c6572510b6c49f655b2bd6f7df18cadd70d9a6438b58d46601272093ac742",
+      "bytes": 285
+    },
+    {
+      "path": "feed.xml",
+      "sha256": "95602e2e4d0d08bc0a4a5a4fdabf36ba94b58b2d4360d8f18ad137375d861cc4",
+      "bytes": 763
+    },
+    {
+      "path": "index.html",
+      "sha256": "8f964c6324a182b627a7829b224989f63db39327023fcb1f0218fcf51c636c41",
+      "bytes": 9235
+    },
+    {
+      "path": "safari-enquiry-handover-checklist/index.html",
+      "sha256": "b96a3fd9670b0b0449b219579cfa4a6a17ab349459aff9bb099137a31e4f6916",
+      "bytes": 13319
+    },
+    {
+      "path": "sitemap.xml",
+      "sha256": "5fd5d8b5a6511fee68de4c25f352a3964ddd7a54da59bb6e24b60efec8c4b42d",
+      "bytes": 288
+    }
+  ]
+}

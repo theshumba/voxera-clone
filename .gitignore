@@ -4,3 +4,5 @@
 !.env.example
 !.env.sample
 !.env.template
+.journal-staging-*/
+.journal-backups/
