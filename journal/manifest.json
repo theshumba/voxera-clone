@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "assets/safari-enquiry-handover-checklist-share.png",
-      "sha256": "a96d54950fe950280131e11395021bb6a58f177ae631a1907673f4bca4fb1dfc",
-      "bytes": 54248
+      "sha256": "847f8d1c9dbd5392c697a32b0ca94d02a3063fe77470fc110a8b9c5d54b5d0e8",
+      "bytes": 53308
     },
     {
       "path": "assets/safari-enquiry-handover-checklist-share.svg",
@@ -12,14 +12,24 @@
       "bytes": 740
     },
     {
+      "path": "assets/safari-quotation-follow-up-email-share.png",
+      "sha256": "7456379a3d0b2114267d1ac15d9f242b7bc3aa909618960f3597b34bd1d6efc5",
+      "bytes": 58322
+    },
+    {
+      "path": "assets/safari-quotation-follow-up-email-share.svg",
+      "sha256": "187ccfd8a552da3ced5c985c022d93da2e6cb1e08627bb119fea5c8235bb2ae3",
+      "bytes": 752
+    },
+    {
       "path": "catalogue.json",
-      "sha256": "8e5c6572510b6c49f655b2bd6f7df18cadd70d9a6438b58d46601272093ac742",
-      "bytes": 285
+      "sha256": "38aa262a18bca31304efc043a4ab53c6df4d39a26d48e33747dbb3b8ce4bbfbf",
+      "bytes": 588
     },
     {
       "path": "feed.xml",
-      "sha256": "95602e2e4d0d08bc0a4a5a4fdabf36ba94b58b2d4360d8f18ad137375d861cc4",
-      "bytes": 763
+      "sha256": "0d21515bd551d795eca28424354ecc65991d4fc160b6e64947ab91be4ef9a9b1",
+      "bytes": 1214
     },
     {
       "path": "images/lodge-greenery.webp",
@@ -33,18 +43,23 @@
     },
     {
       "path": "index.html",
-      "sha256": "93a0a26037623841859f9f488c648bd9fbbf6d009d16b9c7e29cf68a7286b729",
-      "bytes": 10056
+      "sha256": "64eeffce6fbca684404962981839311e99f962b4f0a1ea827e245689070cd155",
+      "bytes": 10887
     },
     {
       "path": "safari-enquiry-handover-checklist/index.html",
-      "sha256": "4c33d1e6051c1449e476d867ea5fdc0f3c229db4e4f0e3f1ec39dbd36b7cf06c",
-      "bytes": 14357
+      "sha256": "2b5148585a983d849f8a11abd5d45207074dbcfdf45ba31653b367e093b0dbfa",
+      "bytes": 15093
+    },
+    {
+      "path": "safari-quotation-follow-up-email/index.html",
+      "sha256": "509274d63c7fa1ea0765960555a3a72ac5b755aef018d19c8464dfa8797f13fc",
+      "bytes": 14350
     },
     {
       "path": "sitemap.xml",
-      "sha256": "5fd5d8b5a6511fee68de4c25f352a3964ddd7a54da59bb6e24b60efec8c4b42d",
-      "bytes": 288
+      "sha256": "a16f14ac5de88ec81374a07c6e7723ea33cad1997008155d4a132c5067471007",
+      "bytes": 416
     }
   ]
 }
