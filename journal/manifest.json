@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "assets/safari-enquiry-handover-checklist-share.png",
-      "sha256": "847f8d1c9dbd5392c697a32b0ca94d02a3063fe77470fc110a8b9c5d54b5d0e8",
-      "bytes": 53308
+      "sha256": "a96d54950fe950280131e11395021bb6a58f177ae631a1907673f4bca4fb1dfc",
+      "bytes": 54248
     },
     {
       "path": "assets/safari-enquiry-handover-checklist-share.svg",
@@ -22,14 +22,24 @@
       "bytes": 763
     },
     {
+      "path": "images/lodge-greenery.webp",
+      "sha256": "8793c06c920d23b3246db7abcd9019ba003d0290e31d8e009b5e4bc1908873e5",
+      "bytes": 354912
+    },
+    {
+      "path": "images/lodge-landscape.webp",
+      "sha256": "b956bf802fbbaa897c91056509e5ee794d9384be1657178731fc5001db164f2b",
+      "bytes": 604146
+    },
+    {
       "path": "index.html",
-      "sha256": "8f964c6324a182b627a7829b224989f63db39327023fcb1f0218fcf51c636c41",
-      "bytes": 9235
+      "sha256": "93a0a26037623841859f9f488c648bd9fbbf6d009d16b9c7e29cf68a7286b729",
+      "bytes": 10056
     },
     {
       "path": "safari-enquiry-handover-checklist/index.html",
-      "sha256": "81fec6c7db4b0b0c156f8ee4243ea36ac776ffd442d20a55372d549036c8cd4a",
-      "bytes": 13286
+      "sha256": "4c33d1e6051c1449e476d867ea5fdc0f3c229db4e4f0e3f1ec39dbd36b7cf06c",
+      "bytes": 14357
     },
     {
       "path": "sitemap.xml",

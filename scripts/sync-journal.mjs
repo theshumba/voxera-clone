@@ -19,7 +19,7 @@ const manifest=JSON.parse(await get('manifest.json'));
 if(manifest.brand!=='lodgehelm'||!Array.isArray(manifest.files)||!manifest.files.length||manifest.files.length>10000)throw Error('Invalid journal manifest');
 const seen=new Set();let total=0;
 for(const entry of manifest.files){
- if(!/^[a-zA-Z0-9_-]+(?:\/[a-zA-Z0-9_-]+)*\.(?:html|xml|json|png|svg|woff2|txt)$/.test(entry.path)||entry.path==='manifest.json'||seen.has(entry.path))throw Error('Unsafe or duplicate journal path');
+ if(!/^[a-zA-Z0-9_-]+(?:\/[a-zA-Z0-9_-]+)*\.(?:html|xml|json|png|webp|svg|woff2|txt)$/.test(entry.path)||entry.path==='manifest.json'||seen.has(entry.path))throw Error('Unsafe or duplicate journal path');
  if(!/^[a-f0-9]{64}$/.test(entry.sha256)||!Number.isInteger(entry.bytes)||entry.bytes<1||entry.bytes>20_000_000)throw Error('Invalid journal file metadata');
  total+=entry.bytes;seen.add(entry.path);
 }
