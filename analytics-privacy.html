@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site analytics</title>
+  <style>
+    body { max-width: 680px; margin: 48px auto; padding: 0 20px; font: 16px/1.6 system-ui, sans-serif; }
+    button { font: inherit; padding: 10px 16px; cursor: pointer; }
+    p { margin: 16px 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Site analytics</h1>
+    <p>We use PostHog to count page visits and clicks, and to see broad information such as country and which pages people use. We use these totals to improve this site. We do not record form entries or replay your visit.</p>
+    <p>This site uses a shared PostHog project hosted in the EU. A temporary ID stays in your browser tab while it is open. We do not use analytics cookies. PostHog's free plan retains events for one year. Your browser's Do Not Track and Global Privacy Control signals are respected.</p>
+    <p>You can turn this site's analytics off here. Your choice is saved in this browser for this site. It does not change analytics on other websites.</p>
+    <button id="choice" type="button"></button>
+    <p id="state" role="status"></p>
+    <p><a href="/">Return to the site</a></p>
+  </main>
+  <script>
+    const button = document.getElementById('choice');
+    const status = document.getElementById('state');
+    function render() {
+      const off = localStorage.getItem('site_analytics_off') === '1';
+      button.textContent = off ? 'Turn analytics on' : 'Turn analytics off';
+      status.textContent = off ? 'Analytics are off for this site.' : 'Analytics are on for this site.';
+    }
+    button.addEventListener('click', () => {
+      localStorage.setItem('site_analytics_off', localStorage.getItem('site_analytics_off') === '1' ? '0' : '1');
+      render();
+    });
+    try { render(); } catch { button.disabled = true; status.textContent = 'Browser storage is unavailable. Use Do Not Track to turn off analytics.'; }
+  </script>
+</body>
+</html>
