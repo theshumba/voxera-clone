@@ -2179,6 +2179,114 @@
         });
       })();
     </script>
+    <style>
+      :root {
+        --lh-video-frame: rgba(255, 255, 255, 0.14);
+        --lh-video-shadow: rgba(0, 0, 0, 0.55);
+        --lh-video-bg: rgb(8, 12, 10);
+        --lh-play-text: rgb(255, 255, 255);
+        --lh-play-fill: linear-gradient(135deg, rgb(201, 88, 46), rgb(232, 160, 74));
+        --lh-play-glow: rgba(224, 134, 58, 0.7);
+      }
+      header.lh-has-video { height: auto !important; min-height: 100vh; }
+      header.lh-has-video [data-framer-name="heading"] { flex: none !important; height: auto !important; overflow: visible !important; padding-top: 150px; }
+      @media (max-width: 809.98px) { header.lh-has-video [data-framer-name="heading"] { padding-top: 110px; } }
+      header.lh-has-video [data-framer-name="bottom-container"] { position: relative !important; margin-top: 56px; padding-bottom: 40px; }
+      .lh-promo {
+        width: min(760px, 100%);
+        margin-top: 40px;
+        padding: 8px;
+        border-radius: 22px;
+        background: var(--lh-video-frame);
+        box-shadow: 0 40px 80px -30px var(--lh-video-shadow);
+        backdrop-filter: blur(6px);
+        animation: lh-promo-in 0.9s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      .lh-promo video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 15px;
+        background: var(--lh-video-bg);
+      }
+      .lh-promo { position: relative; }
+      .lh-promo-play {
+        position: absolute;
+        inset: 8px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 12%;
+        border: 0;
+        border-radius: 15px;
+        background: transparent;
+        cursor: pointer;
+      }
+      .lh-promo-play span {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 24px 13px 20px;
+        border-radius: 999px;
+        background: var(--lh-play-fill);
+        box-shadow: 0 16px 36px -12px var(--lh-play-glow);
+        color: var(--lh-play-text);
+        font: 600 16px/1 Inter, sans-serif;
+        transition: transform 0.2s ease;
+      }
+      .lh-promo-play:hover span { transform: scale(1.04); }
+      .lh-promo-play:active span { transform: scale(0.97); }
+      .lh-promo-play svg { width: 16px; height: 16px; fill: var(--lh-play-text); }
+      .lh-promo.lh-started .lh-promo-play { display: none; }
+      @media (max-width: 809.98px) {
+        .lh-promo-play { padding-bottom: 7%; }
+        .lh-promo-play span { padding: 9px 16px 9px 13px; gap: 7px; font-size: 13px; }
+        .lh-promo-play svg { width: 12px; height: 12px; }
+      }
+      @keyframes lh-promo-in { from { opacity: 0; transform: translateY(40px); } }
+      @media (prefers-reduced-motion: reduce) { .lh-promo { animation: none; } }
+    </style>
+    <script>
+      // Promo video under the hero "Book a walkthrough" button. The hero is
+      // React-hydrated, so it is inserted after hydration and re-added if a
+      // re-render drops it (same approach as the "Plan a Safari" nav item).
+      (function () {
+        function ensure() {
+          var btn = document.querySelector("header .framer-6q0pqb-container");
+          var header = btn && btn.closest("header");
+          if (!header || header.querySelector("[data-lh-promo]")) return;
+          var box = document.createElement("div");
+          box.className = "lh-promo";
+          box.setAttribute("data-lh-promo", "1");
+          box.innerHTML =
+            '<video playsinline preload="none" poster="assets/media/lodgehelm-promo-poster.jpg" ' +
+            'aria-label="LodgeHelm in 70 seconds">' +
+            '<source src="assets/media/lodgehelm-promo.mp4" type="video/mp4"></video>' +
+            '<button type="button" class="lh-promo-play" aria-label="Play the LodgeHelm video">' +
+            '<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>' +
+            "See LodgeHelm in 70 seconds</span></button>";
+          var video = box.querySelector("video");
+          box.querySelector("button").addEventListener("click", function () {
+            box.classList.add("lh-started");
+            video.controls = true;
+            video.play();
+          });
+          var anchor = btn.closest(".ssr-variant") || btn;
+          anchor.parentElement.insertBefore(box, anchor.nextSibling);
+          header.classList.add("lh-has-video");
+        }
+        function start() {
+          setTimeout(function () {
+            ensure();
+            new MutationObserver(ensure).observe(document.body, {
+              childList: true,
+              subtree: true,
+            });
+          }, 300);
+        }
+        document.readyState === "complete" ? start() : window.addEventListener("load", start);
+      })();
+    </script>
     <!-- End of bodyEnd -->
     <nav aria-label="LodgeHelm journal" style="text-align:center;padding:20px;font-family:inherit">
       <a href="/journal/">The lodge journal: enquiries, quotations and guest communication</a>
