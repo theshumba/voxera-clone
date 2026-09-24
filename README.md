@@ -32,6 +32,12 @@ Hosted via GitHub Pages from the `main` branch root. Any push updates the live s
 
 ## Notes
 
+- Homepage positioning: LodgeHelm is the CRM for safari lodges and operators,
+  covering enquiries, conversations, quotes, follow-ups, the booking pipeline
+  and reporting. Overnight replies are one supporting feature. A campaign hook
+  must not replace this broader positioning without an explicit request.
+- Run `python3 scripts/campaign-copy-20260924.py` for copy changes. It updates
+  the static HTML, hydrated modules and their cache versions together.
 - All CDN URLs (framerusercontent.com, Google Fonts, Fontshare, catbox) were downloaded
   local and rewritten to relative `assets/` paths.
 - The Framer analytics beacon (`events.framer.com`) was removed.

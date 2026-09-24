@@ -1,4 +1,4 @@
-"""Apply the approved campaign copy to the static export and hydrated modules."""
+"""Apply the broader CRM positioning to the static export and hydrated modules."""
 from pathlib import Path
 import html
 import json
@@ -55,6 +55,36 @@ COPY = {
     'Book a 15-minute call': 'Book a walkthrough',
 }
 
+# The homepage presents the whole CRM. Overnight replies remain one feature.
+# Resolve both the original export and the earlier campaign-led wording to
+# this approved positioning, so rerunning the script cannot restore it.
+POSITIONING = {
+    'LodgeHelm: keep the conversation going, even after hours': 'LodgeHelm | CRM for safari lodges and operators',
+    'Keep the conversation going. Even after hours.': 'The CRM built for safari lodges and operators.',
+    "Bring guest enquiries, quotes and follow-ups together. Configure overnight replies using your lodge's information, build quotes from your rates and see where enquiries drop off before booking.": 'Manage guest enquiries, conversations, quotes and follow-ups in one place, from first contact to confirmed booking.',
+    'Give each guest conversation a clear next step.': 'Keep the whole guest journey in view.',
+    'Overnight replies use the lodge information you provide and ask for missing trip details. Your team reviews the exchange and confirms availability. We check the setup with you before activation.': "From a guest's first enquiry to a confirmed booking, give your team a shared record of the conversation, quote, booking stage and next step.",
+    'Keep the conversation together': 'One record for each enquiry',
+    'Bring enquiries from your connected website form, email and WhatsApp routes into one shared record.': 'Bring connected website, email and WhatsApp enquiries into a shared CRM, with conversation history and an owner.',
+    'Start the conversation after hours': 'See where each booking stands',
+    'Configure overnight replies to answer from your property information and collect missing dates or guest numbers.': 'Track enquiries through qualification, quoting and booking, with clear stages for your team.',
+    'Make the next action visible': 'Know what happens next',
+    'Keep the quote and its follow-up task with the enquiry, so the next person can see what needs attention.': 'Keep quotes and follow-up tasks with the enquiry, so the next person can pick up the conversation.',
+    'Read the guest conversation, prepare a quote from your rates and give the team a clear follow-up task.': 'Manage guest conversations, prepare quotes from your rates and track each enquiry through to booking.',
+    'Bring enquiries together': 'Manage your enquiries',
+    'One shared enquiry view': 'A shared CRM for your team',
+    'See the booking journey': 'Bookings and reporting',
+    'See enquiry progression and bookings by source, so you know where to investigate a drop-off.': 'Follow enquiry stages and review bookings by source to see where your team wins business and where guests drop off.',
+    'It brings connected enquiries into one inbox, builds quotes from your entered rates and creates follow-up tasks. Overnight replies can be configured using your lodge information, with availability confirmed by your team.': "LodgeHelm is a CRM for safari lodges and operators. It keeps connected guest enquiries, conversations, quotes and follow-up tasks together, with a booking pipeline and reports to help your team see what's happening.",
+    'Does it work with WhatsApp and our website?': 'Can it respond to enquiries overnight?',
+    "LodgeHelm supports connected website forms, email and WhatsApp. We'll check your existing setup and agree which route to connect first.": 'Overnight replies can be configured to use your lodge information and collect missing trip details. Your team can review the conversation in the CRM and confirm availability. We check the connection and a sample exchange with you before activation.',
+    'Look at a guest enquiry, a rate-based quote and the next follow-up with Melusi. We will work through what would fit your lodge.': 'Explore the CRM, prepare a quote and follow an enquiry through the booking pipeline with Melusi.',
+    # This accordion text is only rendered after the follow-up step is opened.
+    'Automatic reminders and SLA timers chase every warm enquiry, so nothing quietly goes cold.': 'Keep follow-up tasks beside the quote and conversation, with a clear next action for the team.',
+    'Response time, quotes sent, conversion and source — run the commercial side of your lodge on numbers, not memory.': 'Review enquiry response times, quotes, conversion and sources to see how your booking pipeline is performing.',
+}
+COPY = {old: POSITIONING.get(new, new) for old, new in COPY.items()} | POSITIONING
+
 compact = lambda s: re.sub(r'\s+', '', s)
 heading_map = {compact(k):v for k,v in COPY.items()}
 heading_map[compact('Real results from real customers')] = 'Working with safari businesses'
@@ -86,14 +116,15 @@ for f in [ROOT/'index.html',*(ROOT/'assets/js').glob('*.mjs')]:
     if s!=before:f.write_text(s);modified.append(f)
 
 # Version the actual imports so cached Framer modules cannot restore old copy.
-revision='campaign-20260924'
+revision='crm-20260924-r2'
 changed_names={f.name for f in modified if f.suffix=='.mjs'}
 for f in [ROOT/'index.html',*(ROOT/'assets/js').glob('*.mjs')]:
     before=f.read_text();s=before
     for name in changed_names:
-        s=re.sub(re.escape(name)+r'(?!\?)(?=["\x27`])',name+'?v='+revision,s)
+        s=re.sub(re.escape(name)+r'(?:\?v=[A-Za-z0-9-]+)?(?=["\x27`])',name+'?v='+revision,s)
     if f.name=='index.html':
-        s=s.replace('src="assets/js/script_main.jugZsNYD.mjs"','src="assets/js/script_main.jugZsNYD.mjs?v='+revision+'"')
+        s=re.sub(r'src="assets/js/script_main\.jugZsNYD\.mjs(?:\?v=[A-Za-z0-9-]+)?"',
+                 'src="assets/js/script_main.jugZsNYD.mjs?v='+revision+'"',s)
     if s!=before:f.write_text(s)
 
 # Keep a concise record of what ships; no prospect data belongs in this repo.
