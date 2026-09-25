@@ -82,6 +82,10 @@ POSITIONING = {
     # This accordion text is only rendered after the follow-up step is opened.
     'Automatic reminders and SLA timers chase every warm enquiry, so nothing quietly goes cold.': 'Keep follow-up tasks beside the quote and conversation, with a clear next action for the team.',
     'Response time, quotes sent, conversion and source — run the commercial side of your lodge on numbers, not memory.': 'Review enquiry response times, quotes, conversion and sources to see how your booking pipeline is performing.',
+    # The closing banner was still the template's voice-agent pitch. Voice is
+    # roadmap-only, so it must never be offered here (positioning lock).
+    'Start Answering Every Call Today': 'See LodgeHelm with your own enquiries',
+    'Launch your AI voice agent in minutes and deliver better customer experiences — without increasing costs.': 'Walk through a guest enquiry, a quote from your rates and the booking pipeline with Melusi.',
 }
 COPY = {old: POSITIONING.get(new, new) for old, new in COPY.items()} | POSITIONING
 
@@ -116,7 +120,7 @@ for f in [ROOT/'index.html',*(ROOT/'assets/js').glob('*.mjs')]:
     if s!=before:f.write_text(s);modified.append(f)
 
 # Version the actual imports so cached Framer modules cannot restore old copy.
-revision='crm-20260924-r2'
+revision='crm-20260925-r3'
 changed_names={f.name for f in modified if f.suffix=='.mjs'}
 for f in [ROOT/'index.html',*(ROOT/'assets/js').glob('*.mjs')]:
     before=f.read_text();s=before
